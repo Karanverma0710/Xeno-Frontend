@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Base API URL
-const API_URL = 'https://crm-campaign-management-app.onrender.com/api';
+const API_URL = 'https://xeno-backend-pue2.onrender.com/api';
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
