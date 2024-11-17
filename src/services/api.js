@@ -8,13 +8,12 @@ const axiosInstance = axios.create({
   baseURL: API_URL,
 });
 
-// Interceptor to attach Firebase token to every request
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('firebaseToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log('Authorization Header:', config.headers.Authorization); // Debug header
+      console.log('Authorization Header:', config.headers.Authorization); 
     } else {
       console.warn('Firebase token not found in localStorage');
     }
@@ -25,7 +24,6 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-// Export individual API functions
 export const fetchCampaigns = () => axiosInstance.get('/campaigns');
 
 export const createCampaign = (data) => axiosInstance.post('/campaign', data);

@@ -1,6 +1,7 @@
 // CreateCampaign.js
 import React, { useState } from 'react';
 import { createCampaign } from '../services/api';
+import { toast } from 'react-toastify';
 
 const CreateCampaign = ({ onCampaignCreated }) => {
   const [name, setName] = useState('');
@@ -25,22 +26,18 @@ const CreateCampaign = ({ onCampaignCreated }) => {
   
     try {
       const response = await createCampaign(campaignData);
-      console.log('Campaign Created:', response.data); // Debug success
-      alert('Campaign created successfully');
+      console.log('Campaign Created:', response.data);
+      toast.success('Campaign created successfully!');
       onCampaignCreated();
     } catch (error) {
-      console.error('Error creating campaign:', error.response || error.message); // Debug error
-      if (error.response) {
-        console.error('Response Status:', error.response.status);
-        console.error('Response Data:', error.response.data);
-      }
-      alert('Failed to create campaign');
+      console.error('Error creating campaign:', error);
+      toast.error('Failed to create campaign. Please try again.');
     }
   };
 
   return (
     <div>
-      <h2>Create New Campaign</h2>
+      <h2>New Campaign</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Campaign Name:</label>
